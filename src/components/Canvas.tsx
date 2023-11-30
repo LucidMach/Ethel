@@ -6,7 +6,7 @@ const View = () => {
   return (
     <Canvas>
       <ambientLight intensity={1} />
-      <directionalLight color="white" position={[0, 0, 5]} />
+      <directionalLight position={[0, 0, 5]} />
       <Model />
       <OrbitControls />
     </Canvas>
