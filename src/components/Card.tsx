@@ -18,13 +18,13 @@ const Card: React.FC = () => {
   return (
     <main
       className={`h-full transition-all duration-200
-    ${!clicked ? "bg-gray-900" : "bg-yellow-600"}`}
+    ${!clicked ? "bg-gray-900" : "bg-yellow-500"}`}
     >
       <animated.div
         style={transitions}
         className="w-full flex flex-col absolute items-center p-5 drop-shadow-xl z-10 "
       >
-        <h3 className="font-mono tracking-[2rem] text-yellow-500">CONCEPT</h3>
+        <h3 className="font-mono tracking-[2rem] text-yellow-600">CONCEPT</h3>
         <h1 className="font-bold text-9xl text-yellow-400">ETHEL</h1>
         <br />
         {!clicked ? (
