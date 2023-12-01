@@ -1,14 +1,8 @@
 ---
-import Canvas from "../components/Canvas";
+import Card from "../components/Card";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <main class="h-full bg-yellow-600">
-    <div class="w-full h-ful absolute text-center top-5 drop-shadow-xl">
-      <h3 class="font-mono tracking-[2rem] text-yellow-500">CONCEPT</h3>
-      <h1 class="font-bold text-9xl text-yellow-400">ETHEL</h1>
-    </div>
-    <Canvas client:load />
-  </main>
+<Layout title="LucidMach | Concept Ethel">
+  <Card client:only />
 </Layout>
