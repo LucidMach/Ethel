@@ -1,17 +1,26 @@
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
+import { Vector3 } from "three";
 
-export function Model(props) {
+export function Model({ stage }) {
   const mesh = useRef();
   const { nodes, materials } = useGLTF("/Ethel.glb");
 
-  useFrame((state, delta) => {
-    mesh.current.rotation.set(0, mesh.current.rotation.y + 0.01, 0);
+  useFrame((state) => {
+    if (stage === 1) {
+      state.camera.lookAt(mesh.current.position);
+      // console.log(state.camera.position);
+      // state.camera.position.lerp(new Vector3(0, 1, 7), 0.01);
+      // state.camera.position.lerp(new Vector3(0, -1.5, 6), 0.01);
+      // state.camera.position.lerp(new Vector3(0, -4, 5), 0.01);
+    }
+    if (stage > 1)
+      mesh.current.rotation.set(0, mesh.current.rotation.y + 0.01, 0);
   });
 
   return (
-    <group {...props} ref={mesh} dispose={null}>
+    <group ref={mesh} dispose={null}>
       <group
         position={[0, 0, 0]}
         rotation={[3.14 / 8, 0, 0]}
