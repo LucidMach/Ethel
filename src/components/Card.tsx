@@ -1,7 +1,7 @@
 import { useSpring, animated } from "@react-spring/web";
 import { useState } from "react";
 
-const audio = new Audio("/oneMoreTime.mp3");
+const audio = new Audio("/bababa.mp3");
 audio.loop = true;
 
 interface props {
@@ -37,7 +37,7 @@ const Card: React.FC<props> = ({ setStage }) => {
               onClick={() => {
                 setClicked(true);
                 setStage((stage) => ++stage);
-                // audio.play();
+                audio.play();
                 api.start({
                   from: { y: 300 },
                   to: { y: 0 },

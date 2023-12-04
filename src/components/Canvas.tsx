@@ -12,7 +12,7 @@ const View: React.FC<props> = ({ stage }) => {
       <ambientLight intensity={1} />
       <directionalLight position={[0, 0, 5]} />
       <Model stage={stage} />
-      <OrbitControls />
+      {stage === 4 ? <OrbitControls /> : null}
     </Canvas>
   );
 };
