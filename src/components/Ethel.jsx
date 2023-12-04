@@ -24,12 +24,12 @@ export function Model({ stage }) {
       state.camera.position.lerp(new Vector3(0, -1.5, 6), 0.01);
       // state.camera.position.lerp(new Vector3(0, -4, 5), 0.01);
     }
-    if (stage === 3) {
+    if (stage === 3)
+      mesh.current.rotation.set(0, mesh.current.rotation.y + 0.01, 0);
+    if (stage === 4) {
       state.camera.lookAt(mesh.current.position);
       state.camera.position.lerp(new Vector3(-5, 1, 7), 0.01);
     }
-    if (stage === 4)
-      mesh.current.rotation.set(0, mesh.current.rotation.y + 0.01, 0);
   });
 
   return (

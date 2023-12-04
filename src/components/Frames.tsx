@@ -35,11 +35,11 @@ const Frames: React.FC = () => {
             >
               CHANGE VIEW
             </button>
-            {stage === 4 ? (
-              <p className="lg:text-xl font-mono text-sm bg-transparent text-center">
-                click, pinch and drag around to explore
-              </p>
-            ) : null}
+            <p className="lg:text-xl lg:visible invisible font-mono text-sm bg-transparent text-center">
+              {stage === 4
+                ? "click, pinch and drag around to explore"
+                : "scroll to explore"}
+            </p>
           </div>
           <div className="bg-yellow-500 h-[500%]"></div>
         </>
