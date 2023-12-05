@@ -37,7 +37,7 @@ const Card: React.FC<props> = ({ setStage }) => {
               onClick={() => {
                 setClicked(true);
                 setStage((stage) => ++stage);
-                // audio.play();
+                audio.play();
                 api.start({
                   from: { y: 300 },
                   to: { y: 0 },
