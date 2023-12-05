@@ -1,26 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import Canvas from "./Canvas";
 import Card from "./Card";
+import StageBtn from "./StageBtn";
 
 const Frames: React.FC = () => {
   const [stage, setStage] = useState(-1);
-
-  const stageSize = useMemo(() => window.innerHeight / 5, []);
-
-  const handleScroll = () => {
-    const y = window.scrollY;
-    const stageVal = Math.floor(y / stageSize);
-    setStage(stageVal);
-    console.log(stage);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <>
@@ -29,19 +13,19 @@ const Frames: React.FC = () => {
         <>
           <div className="fixed top-0 h-full w-full flex flex-col items-center">
             <Canvas stage={stage} />
-            <button
-              className="absolute bottom-10 bg-slate-900 text-yellow-400 w-fit rounded-lg px-6 py-1 font-mono tracking-widest"
-              onClick={() => setStage((stage) => (stage < 4 ? ++stage : 0))}
-            >
-              CHANGE VIEW
-            </button>
-            <p className="lg:text-xl lg:visible invisible font-mono text-sm bg-transparent text-center">
+            <div className="absolute bottom-10 flex text-white text-3xl">
+              <StageBtn stage={stage} value={1} setStage={setStage} />
+              <StageBtn stage={stage} value={2} setStage={setStage} />
+              <StageBtn stage={stage} value={3} setStage={setStage} />
+              <StageBtn stage={stage} value={4} setStage={setStage} />
+            </div>
+            <p className="lg:text-xl font-mono text-sm bg-transparent text-center">
               {stage === 4
                 ? "click, pinch and drag around to explore"
                 : "scroll to explore"}
             </p>
           </div>
-          <div className="bg-yellow-500 h-[500%]"></div>
+          <div className="bg-yellow-500 h-full"></div>
         </>
       ) : null}
     </>

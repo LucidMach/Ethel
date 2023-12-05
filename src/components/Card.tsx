@@ -37,7 +37,7 @@ const Card: React.FC<props> = ({ setStage }) => {
               onClick={() => {
                 setClicked(true);
                 setStage((stage) => ++stage);
-                audio.play();
+                // audio.play();
                 api.start({
                   from: { y: 300 },
                   to: { y: 0 },
@@ -49,7 +49,7 @@ const Card: React.FC<props> = ({ setStage }) => {
             <br />
             <p className="font-mono text-sm tracking-widest text-yellow-500">
               A PROJECT BY{" "}
-              <a className="underline" href="https://lucidmach.tech">
+              <a className="underline" target="_" href="https://lucidmach.tech">
                 LUCIDMACH
               </a>
             </p>
