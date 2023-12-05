@@ -41,6 +41,9 @@ const Card: React.FC<props> = ({ setStage }) => {
                 let count = 0;
                 const interval = setInterval(() => {
                   if (++count === 4) window.clearInterval(interval);
+                  window.addEventListener("scroll", () =>
+                    window.clearInterval(interval)
+                  );
                   setStage((stage) => (stage < 4 ? ++stage : 4));
                 }, 1000);
                 api.start({
