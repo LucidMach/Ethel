@@ -29,6 +29,7 @@ const StageBtn: React.FC<props> = ({ value, setStage, stage }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <div className="flex items-center">
       <div className="h-2 w-10 bg-slate-900 rounded-full">
@@ -42,11 +43,11 @@ const StageBtn: React.FC<props> = ({ value, setStage, stage }) => {
         ) : null}
       </div>
       <div
-        className={`hover:bg-slate-700 h-14 w-14 rounded-full flex justify-center items-center 
+        className={`hover:bg-slate-700 h-14 w-14 text-xl rounded-full flex justify-center items-center 
             ${stage > value - 1 ? "bg-blue-900" : "bg-slate-900"}`}
         onClick={() => setStage(value)}
       >
-        {value}
+        {value !== 4 ? value : "360°"}
       </div>
     </div>
   );

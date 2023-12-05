@@ -36,8 +36,13 @@ const Card: React.FC<props> = ({ setStage }) => {
               className="bg-yellow-400 animate-pulse text-gray-900 w-fit rounded-lg px-6 py-1 font-mono tracking-widest"
               onClick={() => {
                 setClicked(true);
-                setStage((stage) => ++stage);
+                setStage(1);
                 audio.play();
+                let count = 0;
+                const interval = setInterval(() => {
+                  if (++count === 4) window.clearInterval(interval);
+                  setStage((stage) => (stage < 4 ? ++stage : 4));
+                }, 1000);
                 api.start({
                   from: { y: 300 },
                   to: { y: 0 },
