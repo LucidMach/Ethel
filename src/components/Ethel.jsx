@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 
 export function Model({ stage }) {
   const mesh = useRef();
+  const [play, setPlay] = useState(true);
   const { nodes, materials } = useGLTF("/Ethel.glb");
 
   useFrame((state) => {
@@ -24,12 +25,16 @@ export function Model({ stage }) {
     }
     if (stage === 4) {
       state.camera.position.lerp(new Vector3(0, -4, 5), 0.02);
-      mesh.current.rotation.set(0, mesh.current.rotation.y + 0.01, 0);
+      if (play) {
+        mesh.current.rotation.set(0, mesh.current.rotation.y + 0.01, 0);
+      } else {
+        mesh.current.rotation.set(0, mesh.current.rotation.y, 0);
+      }
     }
   });
 
   return (
-    <group ref={mesh} dispose={null}>
+    <group ref={mesh} dispose={null} onClick={() => setPlay((play) => !play)}>
       <group
         position={[0, 0, 0]}
         rotation={[3.14 / 8, 0, 0]}
