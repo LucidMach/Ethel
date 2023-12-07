@@ -39,13 +39,15 @@ const Card: React.FC<props> = ({ setStage }) => {
                 setStage(1);
                 audio.play();
                 let count = 0;
+                let time = 1000;
                 const interval = setInterval(() => {
                   if (++count === 4) window.clearInterval(interval);
+                  time += 1000;
                   window.addEventListener("scroll", () =>
                     window.clearInterval(interval)
                   );
                   setStage((stage) => (stage < 4 ? ++stage : 4));
-                }, 1000);
+                }, time);
                 api.start({
                   from: { y: 300 },
                   to: { y: 0 },

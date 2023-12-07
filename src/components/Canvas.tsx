@@ -5,16 +5,15 @@ import { useEffect, useState } from "react";
 
 interface props {
   stage: number;
-  enable: boolean;
 }
 
-const View: React.FC<props> = ({ stage, enable }) => {
+const View: React.FC<props> = ({ stage }) => {
   return (
     <Canvas>
       <ambientLight intensity={1} />
       <directionalLight position={[0, 0, 5]} />
       <Model stage={stage} />
-      {enable ? <OrbitControls /> : null}
+      <OrbitControls />
     </Canvas>
   );
 };

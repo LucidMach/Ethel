@@ -31,7 +31,7 @@ const StageBtn: React.FC<props> = ({ value, setStage, stage }) => {
   }, []);
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center text-white">
       <div className="h-2 w-10 bg-slate-900 rounded-full">
         {stage === value - 1 ? (
           <div
@@ -47,7 +47,7 @@ const StageBtn: React.FC<props> = ({ value, setStage, stage }) => {
             ${stage > value - 1 ? "bg-blue-900" : "bg-slate-900"}`}
         onClick={() => setStage(value)}
       >
-        {value !== 4 ? value : "360°"}
+        {value === 4 ? "360°" : value === 5 ? "FREE" : value}
       </div>
     </div>
   );

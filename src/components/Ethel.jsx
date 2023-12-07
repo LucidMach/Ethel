@@ -9,7 +9,7 @@ export function Model({ stage }) {
 
   const ang0 = useMemo(() => new Vector3(0, 1, 7));
   const ang1 = useMemo(() => new Vector3(0, -4, 5));
-  const ang2 = useMemo(() => new Vector3(0, -1.5, 6));
+  const ang2 = useMemo(() => new Vector3(0, -9, 6));
   const ang3 = useMemo(() => new Vector3(-5, 1, 7));
   const ang4 = useMemo(() => new Vector3(0, -2, 6));
 
@@ -30,9 +30,12 @@ export function Model({ stage }) {
       state.camera.position.lerp(ang3, 0.02);
     }
     if (stage === 4) {
+      mesh.current.rotation.set(0, mesh.current.rotation.y + 0.05, 0);
+    }
+    if (stage === 5) {
       state.camera.position.lerp(ang4, 0.02);
       mesh.current.lookAt(state.pointer.x, state.pointer.y, 1);
-    } else mesh.current.lookAt(0, 0, 0);
+    }
   });
 
   return (
