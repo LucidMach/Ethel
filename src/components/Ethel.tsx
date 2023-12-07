@@ -1,40 +1,113 @@
 import { useMemo, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { Vector3 } from "three";
+import { Group, Vector3, type Object3DEventMap } from "three";
+import type { GLTF } from "three-stdlib";
 
-export function Model({ stage }) {
-  const mesh = useRef();
-  const { nodes, materials } = useGLTF("/Ethel.glb");
+interface props {
+  stage: number;
+}
 
-  const ang0 = useMemo(() => new Vector3(0, 1, 7));
-  const ang1 = useMemo(() => new Vector3(0, -4, 5));
-  const ang2 = useMemo(() => new Vector3(0, -9, 6));
-  const ang3 = useMemo(() => new Vector3(-5, 1, 7));
-  const ang4 = useMemo(() => new Vector3(0, -2, 6));
+type GLTFResult = GLTF & {
+  nodes: {
+    Plane001: THREE.Mesh;
+    Plane001_1: THREE.Mesh;
+    Plane001_2: THREE.Mesh;
+    Plane001_3: THREE.Mesh;
+    Plane001_4: THREE.Mesh;
+    Plane001_5: THREE.Mesh;
+    Plane001_6: THREE.Mesh;
+    Plane001_7: THREE.Mesh;
+    Plane001_8: THREE.Mesh;
+    Plane001_9: THREE.Mesh;
+    Plane001_10: THREE.Mesh;
+    Plane001_11: THREE.Mesh;
+    Plane001_12: THREE.Mesh;
+    Plane001_13: THREE.Mesh;
+    Plane001_14: THREE.Mesh;
+    Plane001_15: THREE.Mesh;
+    Plane001_16: THREE.Mesh;
+    Plane001_17: THREE.Mesh;
+    Plane001_18: THREE.Mesh;
+    Plane001_19: THREE.Mesh;
+    Plane001_20: THREE.Mesh;
+    Plane001_21: THREE.Mesh;
+    Plane001_22: THREE.Mesh;
+    Plane001_23: THREE.Mesh;
+    Plane001_24: THREE.Mesh;
+    Plane001_25: THREE.Mesh;
+    Plane001_26: THREE.Mesh;
+  };
+  materials: {
+    ["GogoYellow.001"]: THREE.MeshPhysicalMaterial;
+    ["ˀlack.001"]: THREE.MeshStandardMaterial;
+    ["Material.093"]: THREE.MeshStandardMaterial;
+    ["Material.094"]: THREE.MeshStandardMaterial;
+    ["Material.095"]: THREE.MeshStandardMaterial;
+    ["Material.096"]: THREE.MeshStandardMaterial;
+    ["Material.097"]: THREE.MeshStandardMaterial;
+    ["Material.098"]: THREE.MeshStandardMaterial;
+    ["Material.099"]: THREE.MeshStandardMaterial;
+    ["Material.100"]: THREE.MeshStandardMaterial;
+    ["Material.103"]: THREE.MeshStandardMaterial;
+    ["Material.104"]: THREE.MeshStandardMaterial;
+    ["Material.105"]: THREE.MeshStandardMaterial;
+    ["Material.106"]: THREE.MeshStandardMaterial;
+    ["Material.107"]: THREE.MeshStandardMaterial;
+    ["Material.108"]: THREE.MeshStandardMaterial;
+    ["Material.109"]: THREE.MeshStandardMaterial;
+    ["Material.110"]: THREE.MeshStandardMaterial;
+    ["Material.113"]: THREE.MeshStandardMaterial;
+    ["Material.114"]: THREE.MeshStandardMaterial;
+    ["Material.115"]: THREE.MeshStandardMaterial;
+    ["Material.116"]: THREE.MeshStandardMaterial;
+    ["Material.117"]: THREE.MeshStandardMaterial;
+    ["Material.118"]: THREE.MeshStandardMaterial;
+    ["Material.119"]: THREE.MeshStandardMaterial;
+    ["Material.120"]: THREE.MeshStandardMaterial;
+    ["Material.121"]: THREE.MeshStandardMaterial;
+  };
+};
 
-  useFrame((state) => {
-    // console.log(mesh.current.position);
-    state.camera.lookAt(mesh.current.position);
+const Model: React.FC<props> = ({ stage }) => {
+  const mesh = useRef<Group<Object3DEventMap>>(null);
+  const { nodes, materials } = useGLTF("/Ethel.glb") as GLTFResult;
 
-    if (stage === 0) {
-      state.camera.position.lerp(ang0, 0.02);
-    }
-    if (stage === 1) {
-      state.camera.position.lerp(ang1, 0.02);
-    }
-    if (stage === 2) {
-      state.camera.position.lerp(ang2, 0.02);
-    }
-    if (stage === 3) {
-      state.camera.position.lerp(ang3, 0.02);
-    }
-    if (stage === 4) {
-      mesh.current.rotation.set(0, mesh.current.rotation.y + 0.05, 0);
-    }
-    if (stage === 5) {
-      state.camera.position.lerp(ang4, 0.02);
-      mesh.current.lookAt(state.pointer.x, state.pointer.y, 1);
+  const ang0 = useMemo(() => new Vector3(0, 1, 7), []);
+  const ang1 = useMemo(() => new Vector3(0, -4, 5), []);
+  const ang2 = useMemo(() => new Vector3(0, -9, 6), []);
+  const ang3 = useMemo(() => new Vector3(-5, 1, 7), []);
+  const ang4 = useMemo(() => new Vector3(0, -2, 6), []);
+
+  useFrame(({ camera, pointer }) => {
+    if (mesh.current) {
+      // console.log(mesh.current.position);
+      camera.lookAt(mesh.current.position);
+
+      if (stage === 0) {
+        camera.position.lerp(ang0, 0.02);
+      }
+      if (stage === 1) {
+        camera.position.lerp(ang1, 0.02);
+      }
+      if (stage === 2) {
+        camera.position.lerp(ang2, 0.02);
+      }
+      if (stage === 3) {
+        camera.position.lerp(ang3, 0.02);
+      }
+      if (stage === 4) {
+        mesh.current.rotation.set(
+          -pointer.y / 2,
+          mesh.current.rotation.y + 0.02,
+          // 0,
+          0
+        );
+      }
+      if (stage === 5) {
+        camera.position.lerp(ang4, 0.02);
+        mesh.current.lookAt(pointer.x, pointer.y, 1);
+      }
     }
   });
 
@@ -210,6 +283,7 @@ export function Model({ stage }) {
       </group>
     </group>
   );
-}
+};
 
 useGLTF.preload("/Ethel.glb");
+export default Model;

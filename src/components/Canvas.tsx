@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Model } from "./Ethel";
+import Model from "./Ethel";
 import { OrbitControls } from "@react-three/drei";
 import { useEffect, useState } from "react";
 
