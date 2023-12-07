@@ -25,11 +25,6 @@ const Frames: React.FC = () => {
               <StageBtn stage={stage} value={3} setStage={setStage} />
               <StageBtn stage={stage} value={4} setStage={setStage} />
             </div>
-            <p className="lg:text-xl font-mono text-xs bg-transparent text-center">
-              {stage === 4 || enable
-                ? "click, pinch and drag around (or) select view to explore"
-                : "scroll to explore"}
-            </p>
           </div>
           <div className="bg-yellow-500 h-full"></div>
         </>

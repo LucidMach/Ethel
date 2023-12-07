@@ -1,40 +1,42 @@
-import { useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 
 export function Model({ stage }) {
   const mesh = useRef();
-  const [play, setPlay] = useState(true);
   const { nodes, materials } = useGLTF("/Ethel.glb");
+
+  const ang0 = useMemo(() => new Vector3(0, 1, 7));
+  const ang1 = useMemo(() => new Vector3(0, -4, 5));
+  const ang2 = useMemo(() => new Vector3(0, -1.5, 6));
+  const ang3 = useMemo(() => new Vector3(-5, 1, 7));
+  const ang4 = useMemo(() => new Vector3(0, -2, 6));
 
   useFrame((state) => {
     // console.log(mesh.current.position);
     state.camera.lookAt(mesh.current.position);
+
     if (stage === 0) {
-      state.camera.position.lerp(new Vector3(0, 1, 7), 0.02);
+      state.camera.position.lerp(ang0, 0.02);
     }
     if (stage === 1) {
-      state.camera.position.lerp(new Vector3(0, -4, 5), 0.02);
+      state.camera.position.lerp(ang1, 0.02);
     }
     if (stage === 2) {
-      state.camera.position.lerp(new Vector3(0, -1.5, 6), 0.02);
+      state.camera.position.lerp(ang2, 0.02);
     }
     if (stage === 3) {
-      state.camera.position.lerp(new Vector3(-5, 1, 7), 0.02);
+      state.camera.position.lerp(ang3, 0.02);
     }
     if (stage === 4) {
-      state.camera.position.lerp(new Vector3(0, -4, 5), 0.02);
-      if (play) {
-        mesh.current.rotation.set(0, mesh.current.rotation.y + 0.01, 0);
-      } else {
-        mesh.current.rotation.set(0, mesh.current.rotation.y, 0);
-      }
-    }
+      state.camera.position.lerp(ang4, 0.02);
+      mesh.current.lookAt(state.pointer.x, state.pointer.y, 1);
+    } else mesh.current.lookAt(0, 0, 0);
   });
 
   return (
-    <group ref={mesh} dispose={null} onClick={() => setPlay((play) => !play)}>
+    <group ref={mesh} dispose={null}>
       <group
         position={[0, 0, 0]}
         rotation={[3.14 / 8, 0, 0]}
