@@ -43,7 +43,7 @@ const StageBtn: React.FC<props> = ({ value, setStage, stage }) => {
         ) : null}
       </div>
       <div
-        className={`hover:bg-slate-700 h-14 w-14 text-xl rounded-full flex justify-center items-center 
+        className={`hover:bg-slate-700 h-10 w-10 text-base rounded-full flex justify-center items-center 
             ${stage > value - 1 ? "bg-blue-900" : "bg-slate-900"}`}
         onClick={() => setStage(value)}
       >
