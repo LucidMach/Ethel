@@ -74,7 +74,7 @@ const Model: React.FC<props> = ({ stage }) => {
   const { nodes, materials } = useGLTF("/Ethel.glb") as GLTFResult;
 
   const ang0 = useMemo(() => new Vector3(0, 1, 7), []);
-  const ang1 = useMemo(() => new Vector3(0, -4, 5), []);
+  const ang1 = useMemo(() => new Vector3(0, -1, 5), []);
   const ang2 = useMemo(() => new Vector3(0, -9, 6), []);
   const ang3 = useMemo(() => new Vector3(-5, 1, 7), []);
   const ang4 = useMemo(() => new Vector3(0, -2, 6), []);
@@ -100,7 +100,6 @@ const Model: React.FC<props> = ({ stage }) => {
         mesh.current.rotation.set(
           -pointer.y / 2,
           mesh.current.rotation.y + 0.02,
-          // 0,
           0
         );
       }
